@@ -5,8 +5,7 @@
 #include <cmath>
 #define PI 3.1415926
 
-
-int xi, yi, pointer = 0;
+int xi, yi, xf, yf, pointer = 0, base_radius = 20;
 int window_w = 640, window_h = 480;
 
 /*
@@ -29,15 +28,26 @@ void drawFilledCircle(GLfloat x, GLfloat y, GLfloat radius){
 	glFlush();
 }
 
-void mouse(int button, int state, int mx, int my) {
-	if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-        	switch(pointer){  
-	        	default:  
-	        	    	xi=mx;  
-	        	        yi=window_h-my;
-				drawFilledCircle(xi, yi, 20);  
-	        	        pointer=1;  
-	        	        break; 	     
+void mouse(int button, int state, int mx, int my){
+	if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN){
+        	switch(pointer){
+			case 0:
+				base_radius = 20;
+				xi = mx;  
+	        		yi = window_h - my;
+				drawFilledCircle(xi, yi, base_radius);
+				pointer = 1;
+				break;
+			default:
+ 	     			xf = mx;  
+	        	        yf = window_h - my;
+				if(xf == xi && yf == yi){
+					base_radius += 1;
+					drawFilledCircle(xi, yi, base_radius);
+				} else{
+					pointer = 0;
+				}
+	        	        break;
         	}  
     	}
 }
@@ -51,7 +61,7 @@ void display(){
 }   
 
 
-void myinit_func()  {  
+void myinit_func(){  
 	glViewport(100, 100, 640, 480);  
         glMatrixMode(GL_PROJECTION);  
         glLoadIdentity(); 
@@ -59,7 +69,7 @@ void myinit_func()  {
         glMatrixMode(GL_MODELVIEW);  
 }  
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv){
 	glutInit(&argc, argv);  
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize(window_w, window_h);   
