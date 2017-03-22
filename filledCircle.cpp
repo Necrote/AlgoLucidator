@@ -5,6 +5,10 @@
 #include <cmath>
 #define PI 3.1415926
 
+
+int xi, yi, pointer = 0;
+int window_w = 640, window_h = 480;
+
 /*
 	This method renders a circle.
 	args: x-coordinate of center, y-coordinate of center, radius
@@ -25,22 +29,48 @@ void drawFilledCircle(GLfloat x, GLfloat y, GLfloat radius){
 	glFlush();
 }
 
-void display(){
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
-	drawFilledCircle(0.0, 0.0, 1.0);
+void mouse(int button, int state, int mx, int my) {
+    if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+        switch(pointer){  
+            default:  
+            	xi=mx;  
+                yi=window_h-my;
+		drawFilledCircle(xi, yi, 20);  
+                pointer=1;  
+                break; 
+	     
+        }  
+    }
 }
 
 
+void display(){  
+	glClearColor(0.0, 0.0, 0.0, 1);  
+        glColor3f(0.5, 0.35, 0.87);  
+        glClear(GL_COLOR_BUFFER_BIT); 
+        glFlush();  
+}   
+
+
+void myinit_func()  {  
+       glViewport(100, 100, 640, 480);  
+       glMatrixMode(GL_PROJECTION);  
+       glLoadIdentity(); 
+       gluOrtho2D(0, window_w, 0, window_h);  
+       glMatrixMode(GL_MODELVIEW);  
+}  
+
 int main(int argc, char** argv) {
-   glutInit(&argc, argv);  
-   glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-   glutInitWindowSize(640, 480);   
-   glutInitWindowPosition(50, 50); 
-   glutCreateWindow("window");         
-   glutDisplayFunc(display);       
-   glutMainLoop();                
-   return 0;
+	glutInit(&argc, argv);  
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutInitWindowSize(window_w, window_h);   
+	glutInitWindowPosition(50, 50); 
+	glutCreateWindow("window");
+	glutDisplayFunc(display);
+	myinit_func();          
+	glutMouseFunc(mouse);	      
+	glutMainLoop();                
+	return 0;
 }
 
 
