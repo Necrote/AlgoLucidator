@@ -30,17 +30,16 @@ void drawFilledCircle(GLfloat x, GLfloat y, GLfloat radius){
 }
 
 void mouse(int button, int state, int mx, int my) {
-    if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-        switch(pointer){  
-            default:  
-            	xi=mx;  
-                yi=window_h-my;
-		drawFilledCircle(xi, yi, 20);  
-                pointer=1;  
-                break; 
-	     
-        }  
-    }
+	if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+        	switch(pointer){  
+	        	default:  
+	        	    	xi=mx;  
+	        	        yi=window_h-my;
+				drawFilledCircle(xi, yi, 20);  
+	        	        pointer=1;  
+	        	        break; 	     
+        	}  
+    	}
 }
 
 
@@ -53,11 +52,11 @@ void display(){
 
 
 void myinit_func()  {  
-       glViewport(100, 100, 640, 480);  
-       glMatrixMode(GL_PROJECTION);  
-       glLoadIdentity(); 
-       gluOrtho2D(0, window_w, 0, window_h);  
-       glMatrixMode(GL_MODELVIEW);  
+	glViewport(100, 100, 640, 480);  
+        glMatrixMode(GL_PROJECTION);  
+        glLoadIdentity(); 
+        gluOrtho2D(0, window_w, 0, window_h);  
+        glMatrixMode(GL_MODELVIEW);  
 }  
 
 int main(int argc, char** argv) {
