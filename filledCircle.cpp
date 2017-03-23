@@ -1,12 +1,25 @@
+#include <iostream>
+#include <sstream>
+#include <vector>
+#include <string>
+#include <cmath>
 #include <GL/freeglut.h>
 #include <GL/glut.h>
 #include <GL/glu.h>
 #include <GL/gl.h>
-#include <cmath>
+#include <AL/fonts.hpp>
+#include <AL/debug.hpp>
+#include <AL/config.hpp>
+#include <AL/blobs.hpp>
+
 #define PI 3.1415926
 
-int xi, yi, xf, yf, pointer = 0, base_radius = 20;
+
+int xi, yi, xf, yf, max_r, pointer = 0, base_radius = 20;
 int window_w = 640, window_h = 480;
+std::ostringstream ss;
+blobvector vec;
+
 
 /*
 	This method renders a circle.
@@ -36,6 +49,8 @@ void mouse(int button, int state, int mx, int my){
 				xi = mx;  
 	        		yi = window_h - my;
 				drawFilledCircle(xi, yi, base_radius);
+				//ss << base_radius;
+				//printText(0.2, 0.5, 0.6, xi, yi, ss.str());
 				pointer = 1;
 				break;
 			default:
@@ -44,7 +59,12 @@ void mouse(int button, int state, int mx, int my){
 				if(xf == xi && yf == yi){
 					base_radius += 1;
 					drawFilledCircle(xi, yi, base_radius);
+					//ss << base_radius;
+					//printText(0.2, 0.5, 0.6, xf, yf, ss.str());
 				} else{
+					blobs b;
+					b.radius = base_radius;
+					vec.bv.push_back(b);
 					pointer = 0;
 				}
 	        	        break;
