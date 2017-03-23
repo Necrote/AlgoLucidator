@@ -27,16 +27,14 @@ class blobvector
 
 	blobvector()
 	{
-		min=20;
-		max=20;
+		min=-INF;
+		max=INF;
 	}
 };
 
 bool blobs::operator< (const blobs& b1)
 {
 	if(this->radius < b1.radius)
-	
-	
 		return true;
 
 	return false;
