@@ -4,12 +4,6 @@
 #endif
 #define VECTORH
 
-#ifndef CONFIGH
-	#include <config.hpp>
-#endif
-#define CONFIGH
-
-
 class blobs
 {
 	public:
@@ -27,7 +21,7 @@ class blobs
 class blobvector
 {
 	public:
-	std::vector<blobs> bv;
+	std::vector <blobs> bv;
 	float min, max;
 
 	blobvector()
@@ -35,15 +29,7 @@ class blobvector
 		min=-INF;
 		max=INF;
 	}
-	void reset();
 };
-
-void blobvector::reset()
-{
-	bv.clear();
-	min=-INF;
-	max=INF;
-}
 
 bool blobs::operator< (const blobs& b1)
 {

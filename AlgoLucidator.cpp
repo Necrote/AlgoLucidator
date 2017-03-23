@@ -1,16 +1,15 @@
 #include <GL/freeglut.h>
-#include <iostream>
-#include <string>
-#include <cmath>
 #include <AL/debug.hpp>
 #include <AL/config.hpp>
+#include <AL/blobs.hpp>
+#include <AL/fonts.hpp>
+#include <AL/draw.hpp>
+#include <AL/sortanimation.hpp>
 
-extern std::string AL_VERSION, projecttitle[2], sign;
 unsigned short mainWindow,subWindow1,subWindow2;
 
-void printText(float, float, float, float, float, std::string);
-void drawTitle(const int,const int);
 void Init(float, float, float);
+void Init(float, float, float, int ,int);
 void mainInit();
 void display();
 void onClick(int, int, int, int);
@@ -32,7 +31,6 @@ int main(int argc, char **argv)
 
  subWindow1 = glutCreateSubWindow(mainWindow,0,0,WindowWidth/4,WindowHeight);
  Init(0.80f, 0.80f, 0.60f);
- glutMouseFunc(onClick);
  glutKeyboardFunc(keyPress);
  glutDisplayFunc(display);
 
@@ -46,23 +44,6 @@ int main(int argc, char **argv)
  return 0;         
 }
 
-void printText(float r, float g, float b, float posx, float posy, std::string desc)
-{
-  glColor3f(r,g,b);     
-  glRasterPos2f(posx,posy);
-  for (int i = 0; i < desc.size(); ++i) 
-    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, desc[i]);
-}
-
-void drawTitle(const int CurrWindowWidth,const int CurrWindowHeight)
-{
-  int index=glutGetWindow()-2;
-  printText(0.05f, 0.05f, 0.05f, -(8*sign.size()), -CurrWindowHeight+20, sign);
-  if(index>=0)
-    printText(0.05f, 0.50f, 0.05f, -(10*projecttitle[index].size()), CurrWindowHeight-50, projecttitle[index]);
-  glFlush();
-}
-
 void Init(float r, float g, float b)
 {
   int CurrWindowWidth=glutGet(GLUT_WINDOW_WIDTH);
@@ -73,6 +54,16 @@ void Init(float r, float g, float b)
   glMatrixMode(GL_PROJECTION);
   gluOrtho2D(-CurrWindowWidth, CurrWindowWidth,-CurrWindowHeight,CurrWindowHeight);
   drawTitle(CurrWindowWidth, CurrWindowHeight);
+}
+
+void Init(float r, float g, float b, int width, int height)
+{
+  glClearColor(r,g,b,0.80f);
+  glClear(GL_COLOR_BUFFER_BIT);
+  glLoadIdentity();
+  glMatrixMode(GL_PROJECTION);
+  gluOrtho2D(-width, width,-height,height);
+  drawTitle(width, height);
 }
 
 void mainInit()
@@ -96,11 +87,28 @@ void onClick(int button, int state, int oldx, int oldy)
 
 void keyPress(unsigned char key,int x,int y)
 {
+  int activeWindow=glutGetWindow();
   switch(key)
   {
-    case 27:  glutDestroyWindow(mainWindow);  //Esc
+    case 13:  if(activeWindow!=subWindow2)
+                  glutSetWindow(subWindow2);
+              if(mode=="InsertionSort")
+              {
+                drawInsertionSort();
+              }
+              break;
 
-    default:  break;
+    case 27:  glutDestroyWindow(mainWindow);  //Esc
+              break;
+
+    case 49:  mode="InsertionSort";
+              b1.reset();
+              glutSetWindow(subWindow2);
+              glutMouseFunc(onClick2);
+              Init2(0.65f, 0.75f, 0.70f);
+              break;
+
+    default:  ;
   }
 }
 

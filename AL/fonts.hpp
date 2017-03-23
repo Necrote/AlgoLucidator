@@ -11,7 +11,7 @@ void printText(float r, float g, float b, float posx, float posy, std::string de
   for (int i = 0; i < desc.size(); ++i) 
     glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, desc[i]);
 }
-/*
+
 void drawTitle(const int CurrWindowWidth,const int CurrWindowHeight)
 {
   int index=glutGetWindow()-2;
@@ -20,4 +20,12 @@ void drawTitle(const int CurrWindowWidth,const int CurrWindowHeight)
     printText(0.05f, 0.50f, 0.05f, -(10*projecttitle[index].size()), CurrWindowHeight-50, projecttitle[index]);
   glFlush();
 }
-*/
+
+void drawTitle2(const int CurrWindowWidth,const int CurrWindowHeight)
+{
+  int index=glutGetWindow()-2;
+  printText(0.05f, 0.05f, 0.05f, CurrWindowWidth/2 - (4*sign.size()), 10, sign);
+  if(index>=0)
+    printText(0.05f, 0.50f, 0.05f, CurrWindowWidth/2 - (5*projecttitle[index].size()), CurrWindowHeight-25, projecttitle[index]);
+  glFlush();
+}

@@ -4,7 +4,7 @@ extern void Init(float, float, float, int ,int);
 
 void ALdelay()
 {
-	for(int i=0; i<3000000; ++i);
+	for(int i=0; i<300000; ++i);
 }
 
 void drawInsertionSort()
@@ -15,8 +15,8 @@ void drawInsertionSort()
 
 	if(blobs_num > 1)
 	{
-		int req_width=max(CurrWindowWidth, ceil(2*b1.max*blobs_num) );
-		int req_height=max(CurrWindowHeight, ceil(2*b1.max) );
+		int req_width=std::max(CurrWindowWidth, (int)std::ceil(2*b1.max*blobs_num) );
+		int req_height=std::max(CurrWindowHeight, (int)std::ceil(2*b1.max) );
 		Init(0.65f, 0.75f, 0.70f, req_width, req_height);
 		
 		for(int i=0; i<blobs_num; ++i)
