@@ -1,13 +1,14 @@
 #define BLOBSH
-#ifndef VECTOR
+#ifndef VECTORH
 	#include <vector>
 #endif
-#define VECTOR
+#define VECTORH
 
 class blobs
 {
 	public:
 	float radius;
+
 	blobs()
 	{
 		radius=0.0f;
