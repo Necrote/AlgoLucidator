@@ -6,8 +6,6 @@
 
 class blobs
 {
-	
-
 	public:
 	float radius;
 	blobs()
