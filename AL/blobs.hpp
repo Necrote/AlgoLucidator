@@ -6,9 +6,8 @@
 
 class blobs
 {
-	float radius;
-
 	public:
+	float radius;
 	blobs()
 	{
 		radius=0.0f;
@@ -21,7 +20,7 @@ class blobs
 class blobvector
 {
 	public:
-	std::vector <blobs> bv;
+	std::vector<blobs> bv;
 	float min, max;
 
 	blobvector()
