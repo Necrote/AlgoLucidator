@@ -13,7 +13,7 @@ AlgoLucidator elucidates understanding of algorithms in a fun & interactive way.
 
 ## Pre-requisites
 
-- <a href="https://gnu.gcc.org">GCC</a>
+- <a href="https://gcc.gnu.org/">GCC</a>
 - <a href="https://freeglut.sourceforge.net">FreeGlut</a>
 
 ## License
