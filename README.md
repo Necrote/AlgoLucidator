@@ -1,5 +1,4 @@
 # AlgoLucidator
---------------
 
 A mini-project for Computer Graphics semester course developed primarily for familiarization and having on-hands experience with OpenGL while also taking a semester's time constraints into consideration.
 
