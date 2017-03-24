@@ -15,9 +15,13 @@ void printText(float r, float g, float b, float posx, float posy, std::string de
 void drawTitle(const int CurrWindowWidth,const int CurrWindowHeight)
 {
   int index=glutGetWindow()-2;
-  printText(0.05f, 0.05f, 0.05f, -(8*sign.size()), -CurrWindowHeight+20, sign);
-  if(index>=0)
-    printText(0.05f, 0.50f, 0.05f, -(10*projecttitle[index].size()), CurrWindowHeight-50, projecttitle[index]);
+  if(index>0)
+    {
+      printText(0.05f, 0.05f, 0.05f, -(5*sign.size()), -CurrWindowHeight+10, sign);
+      printText(0.05f, 0.50f, 0.05f, -(5*projecttitle[index].size()), CurrWindowHeight-40, projecttitle[index]);
+    }
+  else if(!index)
+    printText(0.05f, 0.50f, 0.05f, -(5*projecttitle[index].size()), CurrWindowHeight-40, projecttitle[index]);
   glFlush();
 }
 

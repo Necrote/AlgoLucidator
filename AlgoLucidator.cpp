@@ -18,8 +18,18 @@ void reshaper(GLsizei, GLsizei);
 
 int main(int argc, char **argv)
 {
+#ifdef DEBUG
+  mode="InsertionSort";
+  b1.bv.resize(7,blobs());
+  int rad[7]={28,32,20,28,36,45,31};
+  for(int p=0; p<7; p++)
+    b1.bv[p].radius=(float)rad[p];
+  b1.min=20;
+  b1.max=45;
+#endif
+
  glutInit(&argc, argv);
- glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA | GLUT_ALPHA);
+ glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
  glutInitWindowSize(WindowWidth, WindowHeight);
  std::string title="AlgoLucidator " + AL_VERSION;
  mainWindow = glutCreateWindow(title.c_str());
@@ -39,6 +49,7 @@ int main(int argc, char **argv)
  glutMouseFunc(onClick);
  glutKeyboardFunc(keyPress);
  glutDisplayFunc(display);
+ glutIdleFunc(display);
  glutMainLoop();
 
  return 0;         
@@ -48,7 +59,7 @@ void Init(float r, float g, float b)
 {
   int CurrWindowWidth=glutGet(GLUT_WINDOW_WIDTH);
   int CurrWindowHeight=glutGet(GLUT_WINDOW_HEIGHT);
-  glClearColor(r,g,b,0.80f);
+  glClearColor(r,g,b,1);
   glClear(GL_COLOR_BUFFER_BIT);
   glLoadIdentity();
   glMatrixMode(GL_PROJECTION);
@@ -58,7 +69,7 @@ void Init(float r, float g, float b)
 
 void Init(float r, float g, float b, int width, int height)
 {
-  glClearColor(r,g,b,0.80f);
+  glClearColor(r,g,b,1);
   glClear(GL_COLOR_BUFFER_BIT);
   glLoadIdentity();
   glMatrixMode(GL_PROJECTION);
@@ -91,7 +102,7 @@ void keyPress(unsigned char key,int x,int y)
   switch(key)
   {
     case 13:  if(activeWindow!=subWindow2)
-                  glutSetWindow(subWindow2);
+                glutSetWindow(subWindow2);
               if(mode=="InsertionSort")
               {
                 drawInsertionSort();

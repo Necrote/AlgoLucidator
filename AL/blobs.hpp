@@ -32,8 +32,8 @@ class blobvector
 
 	blobvector()
 	{
-		min=-INF;
-		max=INF;
+		min=INF;
+		max=-INF;
 	}
 	void reset();
 };
@@ -41,8 +41,8 @@ class blobvector
 void blobvector::reset()
 {
 	bv.clear();
-	min=-INF;
-	max=INF;
+	min=INF;
+	max=-INF;
 }
 
 bool blobs::operator< (const blobs& b1)

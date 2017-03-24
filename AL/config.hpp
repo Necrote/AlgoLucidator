@@ -13,6 +13,6 @@
 #define EPS				1e-6
 #define INF				0x3f3f3f3f
 
-std::string AL_VERSION = "0.2.2";
+std::string AL_VERSION = "0.3.0";
 std::string mode="default";
 std::string projecttitle[2]={"Pseudo-Code","AlgoLucidator"}, sign="Copyright (c) 2017 Vivek Patel, Manan Kalra, Raghav Garg";

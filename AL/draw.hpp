@@ -15,18 +15,17 @@
 	#include <vector>
 #endif
 #define VECTORH
-#include <iostream>
 
 int xi, yi, xf, yf, max_r, pointer = 0, base_radius = 20;
 std::ostringstream ss;
 blobvector b1;
 
-void drawFilledCircle(GLfloat x, GLfloat y, GLfloat radius)
+void drawFilledBlob(GLfloat x, GLfloat y, GLfloat radius, float r=0.05, float g=0.8 ,float b=0.2, float r2=0.4, float g2=0.1, float b2=0.1)
 {
 	int triangleAmount = 1000;
 	GLfloat twicePi = 2.0f * PI;
 	glBegin(GL_TRIANGLE_FAN);
-	glColor3f(1.0f, 1.0f, 1.0f);
+	glColor3f(r,g,b);
 	glVertex2f(x, y); 
 	for(int i = 0; i <= triangleAmount;i++) 
 	{ 
@@ -36,14 +35,17 @@ void drawFilledCircle(GLfloat x, GLfloat y, GLfloat radius)
 			);
 	}
 	glEnd();
-	glFlush();
+	ss << radius;
+	printText(r2,g2,b2, x-10, y-5, ss.str());
+	ss.str(std::string());
+	glutSwapBuffers();
 }
 
 void Init2(float r, float g, float b)
 {
 	int CurrWindowWidth=glutGet(GLUT_WINDOW_WIDTH);
 	int CurrWindowHeight=glutGet(GLUT_WINDOW_HEIGHT);
-	
+
 	glClearColor(r,g,b,0.80f);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glLoadIdentity();
@@ -64,10 +66,7 @@ void onClick2(int button, int state, int mx, int my)
 			base_radius = 20;
 			xi = mx;  
 			yi = CurrWindowHeight - my;
-			drawFilledCircle(xi, yi, base_radius);
-			ss << base_radius;
-			printText(0.2, 0.5, 0.6, xi, yi, ss.str());
-			ss.str(std::string());
+			drawFilledBlob(xi, yi, base_radius);
 			pointer = 1;
 			break;
 			default:
@@ -76,15 +75,19 @@ void onClick2(int button, int state, int mx, int my)
 			if(xf == xi && yf == yi)
 			{
 				base_radius += 1;
-				drawFilledCircle(xi, yi, base_radius);
-				ss << base_radius;
-				printText(0.2, 0.5, 0.6, xf, yf, ss.str());
-				ss.str(std::string());
+				drawFilledBlob(xi, yi, base_radius);
 			}
 			else
 			{
 				blobs b;
 				b.radius = base_radius;
+
+				if(base_radius > b1.max)
+					b1.max=base_radius;
+				if(base_radius < b1.min)
+					b1.min=base_radius;
+
+				trace3(base_radius, b1.min, b1.max);
 				b1.bv.push_back(b);
 				pointer = 0;
 			}
