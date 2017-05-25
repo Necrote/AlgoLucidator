@@ -1,0 +1,6 @@
+1. for i = 1 to n
+2.    for j = 0 to n-i
+3.        if a[j] > a[j+1]
+4.           swap a[j] a[j+1]
+5.     end for
+6. end for

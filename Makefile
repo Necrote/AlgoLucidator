@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS=-I.
+CXXFLAGS=-I. -w
 LDFLAGS=-lGLU -lGL -lglut
 
 all: ALmake

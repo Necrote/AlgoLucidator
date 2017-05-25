@@ -19,6 +19,11 @@ class blobs
 	{
 		radius=0.0f;
 	}
+
+	blobs(float radius)
+	{
+		this->radius=radius;
+	}
 	bool operator< (const blobs&);
 	bool operator== (const blobs&);
 	bool operator> (const blobs&);
@@ -29,9 +34,11 @@ class blobvector
 	public:
 	std::vector<blobs> bv;
 	float min, max;
+	bool pushreq;
 
 	blobvector()
 	{
+		pushreq=false;
 		min=INF;
 		max=-INF;
 	}
@@ -41,6 +48,7 @@ class blobvector
 void blobvector::reset()
 {
 	bv.clear();
+	pushreq=false;
 	min=INF;
 	max=-INF;
 }

@@ -4,7 +4,8 @@
 #include <AL/blobs.hpp>
 #include <AL/fonts.hpp>
 #include <AL/draw.hpp>
-#include <AL/sortanimation.hpp>
+#include <AL/highlight.hpp>
+#include <AL/animation.hpp>
 
 unsigned short mainWindow,subWindow1,subWindow2;
 
@@ -14,7 +15,6 @@ void mainInit();
 void display();
 void onClick(int, int, int, int);
 void keyPress(unsigned char,int, int);
-void reshaper(GLsizei, GLsizei);
 
 int main(int argc, char **argv)
 {
@@ -29,13 +29,12 @@ int main(int argc, char **argv)
 #endif
 
  glutInit(&argc, argv);
- glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+ glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
  glutInitWindowSize(WindowWidth, WindowHeight);
  std::string title="AlgoLucidator " + AL_VERSION;
  mainWindow = glutCreateWindow(title.c_str());
  glutPositionWindow(WIN_POS_X, WIN_POS_Y);
  mainInit();
- glutReshapeFunc(reshaper);
  glutMouseFunc(onClick);
  glutKeyboardFunc(keyPress);
 
@@ -46,10 +45,11 @@ int main(int argc, char **argv)
 
  subWindow2 = glutCreateSubWindow(mainWindow,WindowWidth/4,0,3*WindowWidth/4,WindowHeight);
  Init(0.65f, 0.75f, 0.70f);
+ std::string mainInstruct="Press 1. InsertionSort   2. BubbleSort   3. Dijkstra";
+ printText(0,0,0, -(5*mainInstruct.size()), 540, mainInstruct);
  glutMouseFunc(onClick);
  glutKeyboardFunc(keyPress);
  glutDisplayFunc(display);
- glutIdleFunc(display);
  glutMainLoop();
 
  return 0;         
@@ -101,11 +101,19 @@ void keyPress(unsigned char key,int x,int y)
   int activeWindow=glutGetWindow();
   switch(key)
   {
-    case 13:  if(activeWindow!=subWindow2)
-                glutSetWindow(subWindow2);
+    case 13:  if(b1.pushreq)
+              {
+                b1.bv.push_back(blobs((float)base_radius));
+              }
+              if(activeWindow!=subWindow2)
+                glutSetWindow(subWindow2);                                                                                
               if(mode=="InsertionSort")
               {
                 drawInsertionSort();
+              }
+              else if(mode=="BubbleSort")
+              {
+                drawBubbleSort();
               }
               break;
 
@@ -117,24 +125,22 @@ void keyPress(unsigned char key,int x,int y)
               glutSetWindow(subWindow2);
               glutMouseFunc(onClick2);
               Init2(0.65f, 0.75f, 0.70f);
+              drawTitle3(960,640);
+              break;
+
+    case 50:  mode="BubbleSort";
+              glutSetWindow(subWindow2);
+              glutMouseFunc(onClick3);
+              glutIdleFunc(display);
+              Init3(0.65f, 0.75f, 0.70f);
+              drawTitle4(960,640);
+              break;
+
+    case 51:  mode="Dijkstra";
+              glutSetWindow(subWindow2);
+              djk();
               break;
 
     default:  ;
   }
-}
-
-void reshaper(GLsizei width, GLsizei height)
-{
-  mainInit();
-  glutSetWindow(subWindow1);
-  glutReshapeWindow(width/4, height);
-  Init(0.80f, 0.80f, 0.60f);
-  glutPositionWindow(0,0);
-  glutPostRedisplay();
-  
-  glutSetWindow(subWindow2);
-  glutReshapeWindow(3*width/4, height);
-  Init(0.65f, 0.75f, 0.70f);
-  glutPositionWindow(width/4, 0);
-  glutPostRedisplay();
 }
