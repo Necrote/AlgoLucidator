@@ -1,5 +1,4 @@
 # **AlgoLucidator**
----
 
 A mini-project for Computer Graphics semester course developed primarily for familiarization and having hands-on experience with OpenGL while also taking a semester's time constraints into consideration.
 
@@ -16,7 +15,7 @@ AlgoLucidator elucidates understanding of algorithms in a fun & interactive way.
 * Clone the repo locally or download the zip.
 * Navigate console to the cloned repo and execute `./install.sh`.
 * To compile and run, execute `make`.
-* If Makefile doesn't work or isn't supported then,
+* If Makefile doesn't work or isn't supported, then:
 	* Use the following command to compile: `g++ AlgoLucidator.cpp -w -I. -o Algo -lGL -lGLU -lglut`.
 	* Execute the above compiled program with: `./Algo`. 
 * Run the executable for further instructions: `./a.out`
