@@ -21,9 +21,11 @@ A mini-project for Computer Graphics semester course developed primarily for fam
 * Run the executable for further instructions: `./a.out` 
  
 ## Screenshots
-
+###Insertion Sort
 ![insertion](https://cloud.githubusercontent.com/assets/12759088/26484489/0f3ca7e0-4210-11e7-8773-2f3da6777545.jpg)
+###Bubble Sort
 ![bubble](https://cloud.githubusercontent.com/assets/12759088/26484488/0f38c030-4210-11e7-8e60-b5143c8787b4.jpg)
+###Dijkstra
 ![dijkstra](https://cloud.githubusercontent.com/assets/12759088/26484490/0f3c9ef8-4210-11e7-9d0d-8b253aa77033.jpg)
 
 ## Team
