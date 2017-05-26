@@ -18,7 +18,7 @@ A mini-project for Computer Graphics semester course developed primarily for fam
 * If Makefile doesn't work or isn't supported, then:
 	* Use the following command to compile: `g++ AlgoLucidator.cpp -w -I. -o Algo -lGL -lGLU -lglut`.
 	* Execute the above compiled program with: `./Algo`. 
-* Run the executable for further instructions: `./a.out` 
+* Run the executable for further instructions: `./Algo` 
  
 ## Screenshots
 ### Insertion Sort
