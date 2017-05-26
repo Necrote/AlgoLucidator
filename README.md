@@ -1,20 +1,40 @@
-# AlgoLucidator
+# **AlgoLucidator**
+---
 
-A mini-project for Computer Graphics semester course developed primarily for familiarization and having on-hands experience with OpenGL while also taking a semester's time constraints into consideration.
+A mini-project for Computer Graphics semester course developed primarily for familiarization and having hands-on experience with OpenGL while also taking a semester's time constraints into consideration.
 
 AlgoLucidator elucidates understanding of algorithms in a fun & interactive way.
 
 
-
-## How to run?
-
-- Clone the repo locally or download the zip.
-- Open terminal in the cloned repo and execute `make`.
-
 ## Pre-requisites
 
-- <a href="https://gcc.gnu.org/">GCC</a>
-- <a href="http://freeglut.sourceforge.net">FreeGlut</a>
+* [GCC](https://gnu.gcc.org)
+* [FreeGlut](https://freeglut.sourceforge.net)
+
+## How to run
+
+* Clone the repo locally or download the zip.
+* Navigate console to the cloned repo and execute `./install.sh`.
+* To compile and run, execute `make`.
+* If Makefile doesn't work or isn't supported then,
+	* Use the following command to compile: `g++ AlgoLucidator.cpp -w -I. -o Algo -lGL -lGLU -lglut`.
+	* Execute the above compiled program with: `./Algo`. 
+* Run the executable for further instructions: `./a.out`
+ 
+## Screenshots
+
+![insertion](https://cloud.githubusercontent.com/assets/12759088/26484489/0f3ca7e0-4210-11e7-8773-2f3da6777545.jpg)
+![bubble](https://cloud.githubusercontent.com/assets/12759088/26484488/0f38c030-4210-11e7-8e60-b5143c8787b4.jpg)
+![dijkstra](https://cloud.githubusercontent.com/assets/12759088/26484490/0f3c9ef8-4210-11e7-9d0d-8b253aa77033.jpg)
+
+
+
+
+## Team
+
+* [Vivek Patel](https://github.com/Necrote) 
+* [Manan Kalra](https://github.com/manankalra) 
+* [Raghav Garg](https://github.com/gargraghav) 
 
 ## License
 
